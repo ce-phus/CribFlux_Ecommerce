@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { kit, logo } from '../assets';
 
 
 const randomPosition = () => ({
@@ -40,10 +41,8 @@ const Ripples = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center bg-black text-center text-white overflow-hidden">
-      {/* Background Grid with Subtle Energy Pulses */}
+    <section className="relative min-h-[75vh] flex flex-col bg-black text-white overflow-hidden">
       <div className="absolute inset-0">
-        {/* Static Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
         
         {/* Single Grid Line Pulses */}
@@ -121,34 +120,31 @@ const Hero = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 px-4">
+      <div className="relative z-10 px-4 container mx-auto lg:pt-64 pt-20">
         {/* Announcement Badge */}
         <div className="inline-block bg-gray-900/60 text-sm text-gray-200 px-4 py-1 rounded-full mb-6 border border-gray-800">
-          Exciting announcement 🎉
+          Exclusive Tees & Tanks
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-          A landing page template
+        <h1 className="text-4xl md:text-6xl font-light leading-tight mb-4">
+          cribFlux Sportswear
           <br />
           <span className="text-violet-400">that works for you</span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-          Build beautiful landing pages for your startups, clients, and side
-          projects — without having to think about design.
-        </p>
-
-        {/* Buttons */}
-        <div className="flex justify-center items-center gap-4">
-          <button className="bg-violet-600 hover:bg-violet-700 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg transition">
-            Try it free →
-          </button>
-          <button className="text-gray-300 hover:text-white font-medium transition">
-            Learn more
-          </button>
-        </div>
+        <button className="text-gray-300 bg-white/20 px-7 py-3 cursor-pointer hover:text-white text-sm font-light transition">
+            Shop Now
+        </button>
+      </div>
+      <div className='opacity-[.06] absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[75%]'>
+          <img 
+          src={logo}
+          className='w-full' 
+          width={1440}
+          height={1800}
+          alt="hero"
+          />
       </div>
     </section>
   )
