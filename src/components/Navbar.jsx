@@ -5,10 +5,20 @@ import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import { navigation } from '../constants';
 import MenuSvg from "../assets/svg/MenuSvg"
 import { useLocation } from 'react-router-dom';
+import Login from './PopUp/Login';
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const [loginpopup, setLoginpopup] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  const handleLoginPopup = () => {
+    setLoginpopup(!loginpopup);
+  }
 
   const toggleNavigation = () => {
     if (open) {
@@ -162,7 +172,8 @@ const Navbar = () => {
         {/* Sign In Button - Right */}
         <div className='flex items-center space-x-4 ml-auto lg:ml-0'>
           <motion.button
-            className='hidden lg:flex px-6 py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
+            onClick={handleLoginPopup}
+            className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
             whileHover={{ 
               scale: 1.05,
               y: -1,
@@ -256,6 +267,8 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </div>
+        {loginpopup && <Login handleLoginPopup={handleLoginPopup}  />}
+            
     </motion.div>
   )
 }
