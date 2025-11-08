@@ -4,21 +4,25 @@ const initialstate ={
     error: null,
 }
 
-export const userLoginReducer = (state=initialstate, action) => {
+export const userLoginReducer = (state = initialstate, action) => {
     switch(action.type){
         case "USER_LOGIN_REQUEST":
-            return { ...state, loading: true, error: null }
+            return { ...state, loading: true, error: null };
         case "USER_LOGIN_SUCCESS":
-            return { ...state, loading: false, userInfo: action.payload }
+            return { ...state, loading: false, userInfo: action.payload, error: null };
         case "USER_LOGIN_FAIL":
-            return { ...state, loading: false, error: action.payload }
+            return { ...state, loading: false, error: action.payload };
         case "USER_LOGOUT":
-            return { ...initialstate }
+            return { ...initialstate };
+        case "TOKEN_REFRESH_SUCCESS":
+            return { 
+                ...state, 
+                userInfo: { ...state.userInfo, access: action.payload } 
+            };
         default:
-            return state
+            return state;
     }
 }
-
 export const userRegisterReducer = (state=initialstate, action) => {
     switch(action.type){
         case "USER_REGISTER_REQUEST":

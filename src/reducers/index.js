@@ -3,11 +3,16 @@ import {
     userRegisterReducer
 } from "../reducers/userReducers";
 
+import {
+    getprofileReducer
+} from "./profileReducers"
+
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
+    userLoginReducer,
+    userRegisterReducer,
+    getprofileReducer
 })
 
 export default allReducers;

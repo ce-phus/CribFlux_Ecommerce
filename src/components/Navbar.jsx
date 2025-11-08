@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { logo } from '../assets'
 import { motion, AnimatePresence } from 'framer-motion';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
@@ -6,15 +6,28 @@ import { navigation } from '../constants';
 import MenuSvg from "../assets/svg/MenuSvg"
 import { useLocation } from 'react-router-dom';
 import Login from './PopUp/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../actions/profileActions';
 
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const [loginpopup, setLoginpopup] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
+  const { loading, error, profile } = useSelector(state => state.getprofileReducer);
+  const { userInfo } = useSelector(state => state.userLoginReducer);
+  console.log("Profile: ", profile)
+
+  console.log("UserInfo:", userInfo);
+
+  useEffect(() => {
+    if (userInfo && userInfo.access) {
+      dispatch(getProfile());
+    }
+  }, [dispatch, userInfo, userInfo.access]);
 
   const handleLoginPopup = () => {
     setLoginpopup(!loginpopup);
@@ -169,7 +182,23 @@ const Navbar = () => {
           />
         </motion.a>
 
-        {/* Sign In Button - Right */}
+       {userInfo && profile ? (
+        <div className='hidden lg:flex items-center space-x-4 ml-auto lg:ml-0'>
+          <motion.a
+            href="#profile"
+            className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
+            whileHover={{ 
+              scale: 1.05,
+              y: -1,
+              backgroundColor: "rgba(255,255,255,0.1)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            {profile.first_name}
+          </motion.a>
+        </div>
+       ): (
         <div className='flex items-center space-x-4 ml-auto lg:ml-0'>
           <motion.button
             onClick={handleLoginPopup}
@@ -199,6 +228,8 @@ const Navbar = () => {
             <MenuSvg openNavigation={open}/>
           </motion.button>
         </div>
+       )}
+        
 
         {/* Mobile Navigation */}
         <AnimatePresence>

@@ -2,9 +2,13 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+export const logout = () => (dispatch) => {
+    localStorage.removeItem('userInfo');
+    dispatch({type: "USER_LOGOUT"});
+}
+
 export const login = (email, password) => async (dispatch) => {
-    try
-    {
+    try {
         dispatch({type: "USER_LOGIN_REQUEST"});
 
         const config = {
@@ -17,22 +21,30 @@ export const login = (email, password) => async (dispatch) => {
 
         dispatch({
             type: "USER_LOGIN_SUCCESS",
-            payload:data
-        })
+            payload: data
+        });
 
         localStorage.setItem('userInfo', JSON.stringify(data));
+        
+        // Return success result
+        return { success: true, data };
     } catch(error) {
+        const errorPayload = error.response && error.response.data.detail 
+            ? error.response.data.detail 
+            : error.message;
+            
         dispatch({
             type: "USER_LOGIN_FAIL",
-            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message,
-          });
+            payload: errorPayload,
+        });
       
-          if (error.response.data.detail === "Given token not valid for any token type") {
+        if (error.response?.data?.detail === "Given token not valid for any token type") {
             dispatch(logout());
-            navigate('/')
-          }
+        }
+        
+        // Return error result
+        return { success: false, error: errorPayload };
     }
-    
 }
 
 export const register = (username, firstName, lastName, email, password, re_password) => async(dispatch) => {
