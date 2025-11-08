@@ -1,10 +1,11 @@
 import React from 'react'
-import { Navbar, Hero } from "../components"
+import { Hero, Featured } from "../components"
 
 const Index = () => {
   return (
     <div className='text-xl'>
       <Hero />
+      <Featured />
     </div>
   )
 }

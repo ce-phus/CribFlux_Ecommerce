@@ -7,12 +7,18 @@ import {
     getprofileReducer
 } from "./profileReducers"
 
+import {
+    featuredProductsReducers
+} from "./productReducers"
+
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
     userLoginReducer,
     userRegisterReducer,
-    getprofileReducer
+    getprofileReducer,
+
+    featuredProductsReducers
 })
 
 export default allReducers;
