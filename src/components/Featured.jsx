@@ -6,6 +6,8 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { tanks, tees } from '../assets';
 import Section1 from './Section1';
+import Section2 from './Section2';
+import Section3 from './Section3';
 
 const Featured = () => {
     const dispatch = useDispatch();
@@ -192,7 +194,6 @@ const Featured = () => {
                     </motion.div>
                 </motion.section>
 
-                {/* Section1 */}
 
                 <div>
                     <Section1 />
@@ -275,9 +276,13 @@ const Featured = () => {
                     </motion.div>
                 </motion.section>
 
+                <div>
+                    <Section2 />
+                </div>
+
                 {/* All Products */}
                 <motion.section 
-                    className="mb-20"
+                    className="mb-20 container mx-auto px-4 py-16"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -352,14 +357,19 @@ const Featured = () => {
                     </motion.div>
                 </motion.section>
 
+                <div className=''>
+                    <Section3 />
+                </div>
+
                 {/* Recently Viewed */}
                 {recentlyViewedProducts?.length > 0 && (
                     <motion.section 
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
+                        className='container mx-auto px-4 py-16 mb-20'
                     >
-                        <motion.div variants={itemVariants} className="text-center mb-12">
+                        <motion.div variants={itemVariants} className="text-center mb-12 mt-5">
                             <div className="inline-block bg-gray-900/60 text-sm text-gray-200 px-4 py-1 rounded-full mb-4 border border-gray-800">
                                 Your History
                             </div>

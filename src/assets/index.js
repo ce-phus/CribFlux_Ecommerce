@@ -10,6 +10,8 @@ import tanks from "./tank7.jpg"
 import section from "./section.jpg"
 import tank1 from "./tank1.jpg"
 import tank5 from "./tank5.jpg"
+import bg from "./bg.jpg";
+import bg1 from "./bg1.jpg";
 
 export {
     gradient,
@@ -23,5 +25,7 @@ export {
     tanks,
     section,
     tank1,
-    tank5
+    tank5,
+    bg,
+    bg1
 }
