@@ -8,6 +8,8 @@ import { tanks, tees } from '../assets';
 import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
+import { Link } from 'react-router-dom';
+import Products from './Products';
 
 const Featured = () => {
     const dispatch = useDispatch();
@@ -47,7 +49,12 @@ const Featured = () => {
             />
         </div>;
         }
-        return '👕';
+        return <div>
+
+            <img
+            src={categoryTitle?.toLowerCase().includes('tank') ? tanks : tees}
+            />
+        </div>;
     };
 
     // Container animation variants
@@ -161,32 +168,35 @@ const Featured = () => {
                                         variants={itemVariants}
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="group relative bg-gray-900/40 rounded-xl p-6 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer overflow-hidden"
+                                        className="group relative bg-gray-900/40 mx-10 lg:mx-0 rounded-xl p-6 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer overflow-hidden"
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        <div className="relative z-10 text-center">
-                                            <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-violet-500/30 group-hover:border-violet-500/60 transition-colors duration-300 bg-gradient-to-br from-violet-500/20 to-purple-600/20">
-                                                {imageUrl && !hasError ? (
-                                                    <img
-                                                        src={imageUrl}
-                                                        alt={category.title}
-                                                        className="w-full h-full object-cover"
-                                                        onError={() => handleImageError(imageUrl)}
-                                                        crossOrigin="anonymous"
-                                                    />
-                                                ) : (
-                                                    <div className="w-full h-full flex items-center justify-center">
-                                                        <span className="text-3xl">
-                                                            {getFallbackIcon(category.title, 'category')}
-                                                        </span>
-                                                    </div>
-                                                )}
+                                        <Link
+                                        to={`category/${category.slug}`}>
+                                            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <div className="relative z-10 text-center">
+                                                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-violet-500/30 group-hover:border-violet-500/60 transition-colors duration-300 bg-gradient-to-br from-violet-500/20 to-purple-600/20">
+                                                    {imageUrl && !hasError ? (
+                                                        <img
+                                                            src={imageUrl}
+                                                            alt={category.title}
+                                                            className="w-full h-full object-cover"
+                                                            onError={() => handleImageError(imageUrl)}
+                                                            crossOrigin="anonymous"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center">
+                                                            <span className="text-3xl">
+                                                                {getFallbackIcon(category.title, 'category')}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <h3 className="text-xl font-semibold mb-2 group-hover:text-violet-300 transition-colors">
+                                                    {category.title}
+                                                </h3>
+                                                <p className="text-gray-400 text-sm">Explore Collection</p>
                                             </div>
-                                            <h3 className="text-xl font-semibold mb-2 group-hover:text-violet-300 transition-colors">
-                                                {category.title}
-                                            </h3>
-                                            <p className="text-gray-400 text-sm">Explore Collection</p>
-                                        </div>
+                                        </Link> 
                                     </motion.div>
                                 );
                             })
@@ -264,7 +274,7 @@ const Featured = () => {
                                             {product.description}
                                         </p>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-violet-400 font-semibold">$49.99</span>
+                                            <span className="text-violet-400 font-semibold">Ksh.{product.price}</span>
                                             <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
                                                 {product.category?.title}
                                             </span>
@@ -345,7 +355,7 @@ const Featured = () => {
                                             {product.description}
                                         </p>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-violet-400 font-semibold text-sm">$44.99</span>
+                                            <span className="text-violet-400 font-semibold">Ksh.{product.price}</span>
                                             <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
                                                 {product.category?.title}
                                             </span>
@@ -367,7 +377,7 @@ const Featured = () => {
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className='container mx-auto px-4 py-16 mb-20'
+                        className='container mx-auto px-4 py-16'
                     >
                         <motion.div variants={itemVariants} className="text-center mb-12 mt-5">
                             <div className="inline-block bg-gray-900/60 text-sm text-gray-200 px-4 py-1 rounded-full mb-4 border border-gray-800">
@@ -420,7 +430,7 @@ const Featured = () => {
                                             {product.description}
                                         </p>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-violet-400 font-semibold text-sm">$49.99</span>
+                                            <span className="text-violet-400 font-semibold">Ksh.{product.price}</span>
                                             <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
                                                 {product.category?.title}
                                             </span>

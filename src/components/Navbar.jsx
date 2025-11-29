@@ -167,7 +167,7 @@ const Navbar = () => {
 
         {/* Logo - Center */}
         <motion.a 
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-[3rem] lg:w-[4rem]" 
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-[3rem] lg:w-[12rem]" 
           href="#hero"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

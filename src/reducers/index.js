@@ -8,7 +8,13 @@ import {
 } from "./profileReducers"
 
 import {
-    featuredProductsReducers
+    featuredProductsReducers,
+    allproductsReducer,
+    searchProductReducer,
+    categoryDetailReducer,
+    categoryListReducer,
+    productDetailReducer,
+    productReviewReducer
 } from "./productReducers"
 
 import { combineReducers } from "redux";
@@ -17,6 +23,13 @@ const allReducers = combineReducers({
     userLoginReducer,
     userRegisterReducer,
     getprofileReducer,
+
+    allproductsReducer,
+    searchProductReducer,
+    categoryDetailReducer,
+    categoryListReducer,
+    productDetailReducer,
+    productReviewReducer,
 
     featuredProductsReducers
 })

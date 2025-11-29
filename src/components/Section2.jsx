@@ -1,5 +1,5 @@
 import React from 'react'
-import { bg, tees } from '../assets'
+import { bg, tees, tank8 } from '../assets'
 
 const Section2 = () => {
   return (
@@ -8,7 +8,7 @@ const Section2 = () => {
         <div className='relative w-full h-full'>
             <img
                 src={bg}
-                className='w-full h-full object-cover'
+                className='w-full h-full object-cover brightness-50'
                 alt="Section background"
             />
             
@@ -16,7 +16,7 @@ const Section2 = () => {
             <div className='absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4'>
              
                 <img
-              src={tees}
+              src={tank8}
               className='rounded-lg w-1/3 object-cover mb-8'
               />
                 <button

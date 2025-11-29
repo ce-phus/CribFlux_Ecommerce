@@ -1,7 +1,7 @@
 import React from 'react'
-import { bg, bg1, tees, tank1, tank5, tanks } from '../assets'
+import { bg, bg1, tees, tank1, tank5, tanks, tank10, tees5, tank6 } from '../assets'
 
-const images = [tees, tank1, tanks];
+const images = [tees5, tank10, tank6];
 
 const Section3 = () => {
   return (

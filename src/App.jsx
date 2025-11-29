@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Index } from './pages'
+import { Index, CategoryDetail } from './pages'
 import { HelmetProvider } from "react-helmet-async"
 import { Navbar } from './components'
+import {Footer} from './components'
 
 function App() {
 
@@ -13,8 +14,10 @@ function App() {
       <Navbar />  
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/category/:slug/" element={<CategoryDetail />} />
       </Routes>
       </div>
+      <Footer />
     </Router>
   </HelmetProvider>
   )

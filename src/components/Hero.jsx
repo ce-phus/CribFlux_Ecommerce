@@ -137,7 +137,7 @@ const Hero = () => {
             Shop Now
         </button>
       </div>
-      <div className='opacity-[.06] absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[75%]'>
+      <div className='opacity-[.06] absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[15%]'>
           <img 
           src={logo}
           className='w-full' 
