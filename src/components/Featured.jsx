@@ -332,6 +332,7 @@ const Featured = () => {
                                         key={product.id}
                                         variants={itemVariants}
                                         whileHover={{ y: -5 }}
+                                        onClick={() => handleProductDetailRoute(product)}
 
                                         className="group bg-gray-900/40 rounded-xl p-4 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer"
                                     >
@@ -410,6 +411,7 @@ const Featured = () => {
                                     <motion.div
                                         key={product.id}
                                         variants={itemVariants}
+                                        onClick={() => handleProductDetailRoute(product)}
                                         whileHover={{ y: -5 }}
                                         className="group bg-gray-900/40 rounded-xl p-4 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer"
                                     >
