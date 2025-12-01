@@ -14,7 +14,8 @@ import {
     categoryDetailReducer,
     categoryListReducer,
     productDetailReducer,
-    productReviewReducer
+    productReviewReducer,
+    productsDetailedReducer
 } from "./productReducers"
 
 import { combineReducers } from "redux";
@@ -30,6 +31,7 @@ const allReducers = combineReducers({
     categoryListReducer,
     productDetailReducer,
     productReviewReducer,
+    productsDetailedReducer,
 
     featuredProductsReducers
 })

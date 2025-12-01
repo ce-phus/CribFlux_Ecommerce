@@ -8,11 +8,13 @@ import { tanks, tees } from '../assets';
 import Section1 from './Section1';
 import Section2 from './Section2';
 import Section3 from './Section3';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Products from './Products';
+import { getCategoryDetail } from '../actions/productsActions';
 
 const Featured = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [imageErrors, setImageErrors] = useState({});
 
     useEffect(() => {
@@ -20,6 +22,7 @@ const Featured = () => {
     }, [dispatch]);
 
     const { featuredProducts, error, loading, featuredCategories, popularProducts, recentlyViewedProducts } = useSelector((state) => state.featuredProductsReducers);
+    const { category } = useSelector(state => state.categoryDetailReducer);
 
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -34,6 +37,10 @@ const Featured = () => {
         const cleanPath = path.startsWith('/') ? path.slice(1) : path;
         return `${API_URL}/${cleanPath}`;
     };
+
+    const handleProductDetailRoute = (product) => {
+        navigate(`/product/${product.slug}`);
+    }
 
     const getFallbackIcon = (categoryTitle, type = 'category') => {
         if (type === 'category') {
@@ -239,10 +246,11 @@ const Featured = () => {
                                 const hasError = imageErrors[imageUrl];
                                 
                                 return (
-                                    <motion.div
+                                    <motion.button
                                         key={product.id}
                                         variants={itemVariants}
                                         whileHover={{ y: -5 }}
+                                        onClick={() => handleProductDetailRoute(product)}
                                         className="group bg-gray-900/40 rounded-xl p-4 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer"
                                     >
                                         <div className="relative overflow-hidden rounded-lg mb-4">
@@ -279,7 +287,7 @@ const Featured = () => {
                                                 {product.category?.title}
                                             </span>
                                         </div>
-                                    </motion.div>
+                                    </motion.button>
                                 );
                             })
                         )}
@@ -320,12 +328,14 @@ const Featured = () => {
                                 const hasError = imageErrors[imageUrl];
                                 
                                 return (
-                                    <motion.div
+                                    <motion.button
                                         key={product.id}
                                         variants={itemVariants}
                                         whileHover={{ y: -5 }}
+
                                         className="group bg-gray-900/40 rounded-xl p-4 border border-gray-800 hover:border-violet-500/50 transition-all duration-300 cursor-pointer"
                                     >
+                                        
                                         <div className="relative overflow-hidden rounded-lg mb-4">
                                             {imageUrl && !hasError ? (
                                                 <img
@@ -360,7 +370,7 @@ const Featured = () => {
                                                 {product.category?.title}
                                             </span>
                                         </div>
-                                    </motion.div>
+                                    </motion.button>
                                 );
                             })
                         )}

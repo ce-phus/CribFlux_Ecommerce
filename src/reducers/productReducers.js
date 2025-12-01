@@ -126,6 +126,28 @@ export const productDetailReducer = (state = { product: {}, relatedProducts: [] 
     }
 };
 
+export const productsDetailedReducer = (state = { product: {}, relatedProducts: [] }, action) => {
+    switch (action.type) {
+        case "PRODUCTS_DETAILED_REQUEST":
+            return { ...state, loading: true, product: {}, relatedProducts: [] };
+            
+
+        case "PRODUCTS_DETAILED_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                product: action.payload,
+                relatedProducts: action.payload.related_products,
+            };
+
+        case "PRODUCTS_DETAILED_FAIL":
+            return { ...state, loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
 export const productReviewReducer = (state = {}, action) => {
     switch (action.type) {
         case "PRODUCT_REVIEW_REQUEST":
