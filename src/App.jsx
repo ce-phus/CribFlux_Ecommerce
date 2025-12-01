@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Index, CategoryDetail, ProductDetail, DetailProduct } from './pages'
+import { Index, CategoryDetail, ProductDetail, DetailProduct, CartUI } from './pages'
 import { HelmetProvider } from "react-helmet-async"
 import { Navbar } from './components'
 import {Footer} from './components'
@@ -17,6 +17,7 @@ function App() {
         <Route path="/category/:slug/" element={<CategoryDetail />} />
         <Route path="/product/:category_slug/:slug/" element={<ProductDetail />} />
         <Route path='/product/:slug/' element={<DetailProduct />} />
+        <Route path='/cart' element={<CartUI />} />
       </Routes>
       </div>
       <Footer />

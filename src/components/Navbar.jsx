@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import Login from './PopUp/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../actions/profileActions';
+import Cart from './Cart';
 
 
 const Navbar = () => {
@@ -24,10 +25,10 @@ const Navbar = () => {
   console.log("UserInfo:", userInfo);
 
   useEffect(() => {
-    if (userInfo && userInfo.access) {
+    if (userInfo && userInfo?.access) {
       dispatch(getProfile());
     }
-  }, [dispatch, userInfo, userInfo.access]);
+  }, [dispatch, userInfo, userInfo?.access]);
 
   const handleLoginPopup = () => {
     setLoginpopup(!loginpopup);
@@ -182,53 +183,61 @@ const Navbar = () => {
           />
         </motion.a>
 
-       {userInfo && profile ? (
-        <div className='hidden lg:flex items-center space-x-4 ml-auto lg:ml-0'>
-          <motion.a
-            href="#profile"
-            className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
-            whileHover={{ 
-              scale: 1.05,
-              y: -1,
-              backgroundColor: "rgba(255,255,255,0.1)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            {profile.first_name}
-          </motion.a>
-        </div>
-       ): (
-        <div className='flex items-center space-x-4 ml-auto lg:ml-0'>
-          <motion.button
-            onClick={handleLoginPopup}
-            className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
-            whileHover={{ 
-              scale: 1.05,
-              y: -1,
-              backgroundColor: "rgba(255,255,255,0.1)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            Sign In
-          </motion.button>
+        <div className='flex space-x-2'>
+          <div>
+            <Cart />
+          </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className='lg:hidden p-3 rounded-full bg- backdrop-blur-sm'
-            onClick={toggleNavigation}
-            whileHover={{ 
-              scale: 1.1,
-              backgroundColor: "rgba(255,255,255,0.2)"
-            }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            <MenuSvg openNavigation={open}/>
-          </motion.button>
+          {userInfo && profile ? (
+          <div className='hidden lg:flex items-center space-x-4 ml-auto lg:ml-0'>
+            <motion.a
+              href="#profile"
+              className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
+              whileHover={{ 
+                scale: 1.05,
+                y: -1,
+                backgroundColor: "rgba(255,255,255,0.1)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              {profile.first_name}
+            </motion.a>
+          </div>
+        ): (
+          <div className='flex items-center space-x-4 ml-auto lg:ml-0'>
+            <motion.button
+              onClick={handleLoginPopup}
+              className='hidden lg:flex px-6 cursor-pointer py-2.5 text-white text-sm font-light uppercase bg-black border border-n-6 rounded-full backdrop-blur-sm transition-all hover:bg-n-7 hover:border-n-5 text-white'
+              whileHover={{ 
+                scale: 1.05,
+                y: -1,
+                backgroundColor: "rgba(255,255,255,0.1)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              Sign In
+            </motion.button>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className='lg:hidden p-3 rounded-full bg- backdrop-blur-sm'
+              onClick={toggleNavigation}
+              whileHover={{ 
+                scale: 1.1,
+                backgroundColor: "rgba(255,255,255,0.2)"
+              }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <MenuSvg openNavigation={open}/>
+            </motion.button>
+          </div>
+          )}
         </div>
-       )}
+
+      
         
 
         {/* Mobile Navigation */}

@@ -3,6 +3,7 @@ import { getProductsDetailed } from '../actions/productsActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Products } from '../components'
+import { addToCart } from '../actions/cartActions'
 
 const DetailProduct = () => {
   const { slug } = useParams();
@@ -15,6 +16,10 @@ const DetailProduct = () => {
   const allImages = product?.images ? [product.image, ...product.images.map(img => img.image)] : [product?.image]
 
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const handleAddToCart = (productId) => {
+    dispatch(addToCart(productId, 1)); 
+};
 
   useEffect(() => {
       dispatch(getProductsDetailed(slug))
@@ -209,7 +214,8 @@ const DetailProduct = () => {
                           {/* Add to Cart */}
                           <div className="space-y-4">
                               <button
-                                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                              onClick={() => handleAddToCart(product.id)}
+                                  className="w-full bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                   disabled={!product?.num_available || product?.num_available === 0}
                               >
                                   {product?.num_available > 0 ? 'Add to Cart' : 'Out of Stock'}
@@ -250,7 +256,9 @@ const DetailProduct = () => {
                                                   <p className="text-sm text-gray-400">
                                                       Available: {variant.num_available}
                                                   </p>
-                                                  <button className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 w-full">
+                                                  <button
+                                                  onClick={() => handleAddToCart(variant.id)}
+                                                  className="mt-2 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 w-full">
                                                       Add to Cart
                                                   </button>
                                               </div>

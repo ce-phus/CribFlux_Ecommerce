@@ -4,6 +4,7 @@ import { getProductDetail } from '../actions/productsActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
+import { addToCart } from '../actions/cartActions'
 
 const ProductDetail = () => {
     const { category_slug, slug } = useParams()
@@ -26,6 +27,10 @@ const ProductDetail = () => {
         if (x === undefined || x === null) return "0"; 
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    const handleAddToCart = (productId) => {
+        dispatch(addToCart(productId, 1)); 
+    };
 
     const renderStars = (rating) => {
         const stars = [];
@@ -214,6 +219,7 @@ const ProductDetail = () => {
                             {/* Add to Cart */}
                             <div className="space-y-4">
                                 <button
+                                    onClick={() => handleAddToCart(product.id)}
                                     className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                     disabled={!product?.num_available || product?.num_available === 0}
                                 >
@@ -255,7 +261,9 @@ const ProductDetail = () => {
                                                     <p className="text-sm text-gray-400">
                                                         Available: {variant.num_available}
                                                     </p>
-                                                    <button className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 w-full">
+                                                    <button
+                                                    onClick={() => handleAddToCart(variant.id)}
+                                                    className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200 w-full">
                                                         Add to Cart
                                                     </button>
                                                 </div>

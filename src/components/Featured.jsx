@@ -246,7 +246,7 @@ const Featured = () => {
                                 const hasError = imageErrors[imageUrl];
                                 
                                 return (
-                                    <motion.button
+                                    <motion.div
                                         key={product.id}
                                         variants={itemVariants}
                                         whileHover={{ y: -5 }}
@@ -287,7 +287,7 @@ const Featured = () => {
                                                 {product.category?.title}
                                             </span>
                                         </div>
-                                    </motion.button>
+                                    </motion.div>
                                 );
                             })
                         )}
